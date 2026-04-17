@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>TaskFlow Enterprise</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="topbar">
+    <h1>⚡ TaskFlow</h1>
+
+    <div class="actions">
+        <input id="search" placeholder="Buscar tareas..." oninput="render()">
+
+        <select id="filter" onchange="render()">
+            <option value="all">Todas</option>
+            <option value="low">Baja</option>
+            <option value="medium">Media</option>
+            <option value="high">Alta</option>
+        </select>
+
+        <button onclick="toggleTheme()">🌙</button>
+    </div>
+</div>
+
+<div class="create">
+    <input id="text" placeholder="Nueva tarea">
+
+    <select id="priority">
+        <option value="low">🟢 Baja</option>
+        <option value="medium">🟡 Media</option>
+        <option value="high">🔴 Alta</option>
+    </select>
+
+    <input type="datetime-local" id="deadline">
+
+    <button onclick="addTask()">+ Crear</button>
+</div>
+
+<div class="stats" id="stats"></div>
+
+<div class="board">
+
+    <div class="column" ondrop="drop(event,'todo')" ondragover="allow(event)">
+        <h3>📌 To Do</h3>
+        <div id="todo"></div>
+    </div>
+
+    <div class="column" ondrop="drop(event,'doing')" ondragover="allow(event)">
+        <h3>⚙️ Doing</h3>
+        <div id="doing"></div>
+    </div>
+
+    <div class="column" ondrop="drop(event,'done')" ondragover="allow(event)">
+        <h3>✅ Done</h3>
+        <div id="done"></div>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
